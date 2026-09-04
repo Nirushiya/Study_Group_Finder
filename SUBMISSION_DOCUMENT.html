@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyGroup — Project Submission Document</title>
+  <style>
+    @page {
+      margin: 2cm 2.5cm;
+      size: A4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .cover {
+      text-align: center;
+      padding: 80px 40px 60px;
+      page-break-after: always;
+      background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #ecfdf5 100%);
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cover-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #2563eb, #10b981);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+    }
+
+    .cover-icon svg {
+      width: 44px;
+      height: 44px;
+      fill: white;
+    }
+
+    .cover h1 {
+      font-size: 36px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .cover .subtitle {
+      font-size: 18px;
+      color: #64748b;
+      margin-bottom: 40px;
+    }
+
+    .cover .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #2563eb;
+      color: white;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+
+    .cover-meta {
+      background: white;
+      border-radius: 16px;
+      padding: 32px 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      max-width: 500px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .cover-meta table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cover-meta td {
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 14px;
+    }
+
+    .cover-meta td:first-child {
+      font-weight: 600;
+      color: #64748b;
+      width: 45%;
+    }
+
+    .cover-meta td:last-child {
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .cover-meta tr:last-child td {
+      border-bottom: none;
+    }
+
+    .content {
+      padding: 0 0 20px 0;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      letter-spacing: -0.3px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #334155;
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    li {
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    .info-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+
+    .info-box h3 {
+      margin-top: 0;
+    }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    table.data th {
+      background: #f1f5f9;
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 600;
+      color: #475569;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    table.data td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    table.data tr:nth-child(even) td {
+      background: #fafbfc;
+    }
+
+    .prompt-block {
+      background: #f8fafc;
+      border-left: 4px solid #2563eb;
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+
+    .prompt-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .prompt-text {
+      font-family: "SF Mono", "Cascadia Code", "Fira Code", Consolas, monospace;
+      font-size: 13px;
+      color: #1e293b;
+      background: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    .prompt-response {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      margin-top: 0;
+      color: #2563eb;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .tech-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+
+    .tech-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .tech-item span {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .test-note {
+      background: #ecfdf5;
+      border: 1px solid #d1fae5;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+
+    .test-note h3 {
+      margin-top: 0;
+      color: #047857;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 12px;
+      color: #94a3b8;
+      text-align: center;
+    }
+
+    .placeholder {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    @media print {
+      .cover {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== COVER PAGE ===================== -->
+<div class="cover">
+  <div class="cover-icon">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" fill="white"/>
+    </svg>
+  </div>
+  <div class="badge">AI Web Application Challenge</div>
+  <h1>StudyGroup</h1>
+  <p class="subtitle">Find your people. Ace your courses.</p>
+
+  <div class="cover-meta">
+    <table>
+      <tr>
+        <td>Group Number</td>
+        <td class="placeholder">[Enter your group number]</td>
+      </tr>
+      <tr>
+        <td>Project Title</td>
+        <td>StudyGroup — University Study Group Finder</td>
+      </tr>
+      <tr>
+        <td>Leader / Nominated Submitter</td>
+        <td class="placeholder">[Enter leader name &amp; index number]</td>
+      </tr>
+      <tr>
+        <td>Date Submitted</td>
+        <td>September 4, 2026</td>
+      </tr>
+      <tr>
+        <td>Working Time</td>
+        <td>60 minutes</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== CONTENT ===================== -->
+<div class="content">
+
+  <!-- SECTION 1: Group Members -->
+  <h2>1. Group Members</h2>
+  <table class="data">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Index Number</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td class="placeholder">[Member 1 name]</td>
+        <td class="placeholder">[Index number]</td>
+        <td>Leader / Nominated Submitter</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="placeholder">[Member 2 name]</td>
+        <td class="placeholder">[Index number]</td>
+        <td>Member</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="placeholder">[Member 3 name]</td>
+        <td class="placeholder">[Index number]</td>
+        <td>Member</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="placeholder">[Member 4 name]</td>
+        <td class="placeholder">[Index number]</td>
+        <td>Member</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="placeholder">[Add or remove rows as needed to match your group size.]</p>
+
+  <!-- SECTION 2: Problem & Summary -->
+  <h2>2. Problem, Intended Users &amp; Project Summary</h2>
+
+  <div class="info-box">
+    <h3>Problem</h3>
+    <p>
+      University students frequently struggle to find study partners or form study groups for their courses.
+      There is no centralized, easy-to-use platform to connect students who are taking the same classes.
+      Students rely on informal word-of-mouth, scattered social media groups, or chance encounters —
+      making it difficult to find consistent, organized study support.
+    </p>
+  </div>
+
+  <div class="info-box">
+    <h3>Intended Users</h3>
+    <p>University and college students who want to:</p>
+    <ul>
+      <li>Find existing study groups for their specific courses</li>
+      <li>Create new study groups and invite classmates to join</li>
+      <li>See who is in a group, where and when it meets</li>
+      <li>Manage groups they have created or joined — all in one place</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Short Project Summary</h3>
+    <p>
+      <strong>StudyGroup</strong> is a web application that lets university students sign up, browse
+      study groups by course, join groups with available capacity, and create their own groups with
+      details like location, meeting time, and member limit. Students can view a member list for each
+      group, leave groups they've joined, and edit or delete groups they organize. The app uses Supabase
+      for authentication and data storage with row-level security, ensuring only authenticated students
+      can access and modify data. The essential user journey — sign up, discover a group, join it, and
+      view its members — was tested and verified end-to-end before submission.
+    </p>
+  </div>
+
+  <!-- SECTION 3: Main Features -->
+  <h2 class="page-break">3. Main Features</h2>
+
+  <div class="feature-card">
+    <h3>Authentication (Sign Up / Sign In)</h3>
+    <p>Email and password authentication powered by Supabase Auth. Sessions persist across reloads.
+    No email confirmation required — students get instant access. Error handling for duplicate accounts
+    and invalid credentials.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>Discover Page (Browse Groups)</h3>
+    <p>Responsive grid of all study groups, sorted newest first. Live search bar filters by course code,
+    course name, title, or description. Each card shows course badge, title, description, location, meeting
+    time, member count vs. capacity, and "Joined" / "You created this group" labels.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>Create Group</h3>
+    <p>Modal form with fields for group title, course code, course name, description, location, meeting time,
+    and max members (default 10). On creation, the user is taken directly to the new group's detail page.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>Group Detail Page</h3>
+    <p>Full group info with a member list showing each member's email, avatar, join date, and "Organizer" badge.
+    Join and leave buttons. Creators can edit all fields inline or delete the group. "Group full" message
+    when capacity is reached.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>My Groups Dashboard</h3>
+    <p>Two sections: "Organizing" (groups the user created) and "Joined" (groups the user joined). Each row
+    shows course avatar, title, course info, member count, location, and meeting time. Leave button on
+    joined groups.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>Responsive Design &amp; UX</h3>
+    <p>Blue-to-emerald gradient brand scheme, rounded corners, subtle shadows, hover lift effects, loading
+    spinners, empty states, and smooth transitions. Responsive grid: 1 column on mobile, 2 on tablet, 3 on
+    desktop. Sticky frosted-glass navigation header.</p>
+  </div>
+
+  <!-- SECTION 4: Technologies & Tools -->
+  <h2>4. Technologies &amp; Tools Used</h2>
+
+  <div class="tech-grid">
+    <div class="tech-item">
+      <strong>React 18</strong>
+      <span>Frontend UI library (with TypeScript)</span>
+    </div>
+    <div class="tech-item">
+      <strong>TypeScript</strong>
+      <span>Static typing for all components and data models</span>
+    </div>
+    <div class="tech-item">
+      <strong>Vite</strong>
+      <span>Build tool and dev server</span>
+    </div>
+    <div class="tech-item">
+      <strong>Tailwind CSS 3</strong>
+      <span>Utility-first styling framework</span>
+    </div>
+    <div class="tech-item">
+      <strong>Lucide React</strong>
+      <span>Icon library for UI elements</span>
+    </div>
+    <div class="tech-item">
+      <strong>Supabase</strong>
+      <span>PostgreSQL database, Auth, Row Level Security</span>
+    </div>
+    <div class="tech-item">
+      <strong>Bolt (bolt.new)</strong>
+      <span>AI prompt-to-app platform used for development</span>
+    </div>
+    <div class="tech-item">
+      <strong>Claude Code (Anthropic)</strong>
+      <span>AI model powering the Bolt development environment</span>
+    </div>
+  </div>
+
+  <h3>Database Schema (3 Tables)</h3>
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Table</th>
+        <th>Key Columns</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>study_groups</code></td>
+        <td>id, title, course_code, course_name, description, location, meeting_time, max_members, creator_id</td>
+        <td>Stores all study groups created by students</td>
+      </tr>
+      <tr>
+        <td><code>memberships</code></td>
+        <td>id, group_id, user_id, joined_at (UNIQUE group_id + user_id)</td>
+        <td>Tracks which students have joined which groups</td>
+      </tr>
+      <tr>
+        <td><code>profiles</code></td>
+        <td>id, email, created_at</td>
+        <td>Auto-populated on signup via trigger; stores email for member lists</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Row Level Security (RLS) Policies</h3>
+  <ul>
+    <li><strong>study_groups:</strong> All authenticated users can SELECT and INSERT; only creators can UPDATE and DELETE their own groups.</li>
+    <li><strong>memberships:</strong> All authenticated users can SELECT; users can only INSERT and DELETE their own memberships.</li>
+    <li><strong>profiles:</strong> All authenticated users can SELECT; users can only UPDATE their own profile.</li>
+  </ul>
+
+  <!-- SECTION 5: Prompts Used -->
+  <h2 class="page-break">5. All Prompts &amp; Follow-Up Prompts Used</h2>
+
+  <div class="prompt-block">
+    <div class="prompt-label">Prompt 1 — Initial Build (Bolt)</div>
+    <div class="prompt-text">Build a Study Group Finder app for university students — they can create study groups for courses, browse available groups, and join them.</div>
+    <div class="prompt-response">
+      AI generated the full project: database schema (study_groups, memberships, profiles tables),
+      RLS policies, Supabase client setup, auth context, and all React components (AuthScreen,
+      BrowseGroups, GroupCard, CreateGroupModal, GroupDetail, MyGroups). The app shell with navigation
+      was wired up in App.tsx. The build was verified with npm run build.
+    </div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-label">Prompt 2 — Documentation Request</div>
+    <div class="prompt-text">give all the cotent about this web app to create docmnet including features of prompt</div>
+    <div class="prompt-response">
+      AI generated a comprehensive DOCUMENTATION.md file covering the app overview, problem, intended
+      users, user journey, all features, technical architecture, database schema, RLS policies, file
+      structure, AI tools used, and build status.
+    </div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-label">Prompt 3 — Build Verification</div>
+    <div class="prompt-text">You did not run "npm run build". Run "npm run build" to ensure the project builds correctly, and fix any issues.</div>
+    <div class="prompt-response">
+      AI ran npm run build. The build completed successfully with 0 errors. Output: 1647 modules
+      transformed, 305 KB JS bundle (87 KB gzipped), 20 KB CSS (4 KB gzipped).
+    </div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-label">Prompt 4 — Submission Document</div>
+    <div class="prompt-text">One group document (PDF preferred) with the following: group number and project title, every member's name and index number, leader/nominated submitter, problem, intended users and a short project summary, main features and technologies/tools used, all prompts and follow-up prompts used, other AI-generated actions or inputs, a brief note on what the group tested before submission.</div>
+    <div class="prompt-response">
+      AI generated this print-ready HTML document (this file) covering all required submission sections.
+      The document can be opened in any browser and saved as PDF via "Print → Save as PDF".
+    </div>
+  </div>
+
+  <!-- SECTION 6: Other AI-Generated Actions -->
+  <h2>6. Other AI-Generated Actions &amp; Inputs</h2>
+
+  <div class="info-box">
+    <h3>AI-Generated Database Migrations</h3>
+    <p>
+      The AI designed and applied two SQL migrations directly to the Supabase database using the
+      Supabase MCP (Model Context Protocol) tools — no manual SQL was written:
+    </p>
+    <ul>
+      <li><strong>Migration 1:</strong> Created <code>study_groups</code> and <code>memberships</code> tables with all columns, foreign keys, indexes, and RLS policies (4 policies per table for SELECT, INSERT, UPDATE, DELETE).</li>
+      <li><strong>Migration 2:</strong> Created <code>profiles</code> table with a PL/pgSQL trigger function (<code>handle_new_user</code>) that auto-inserts a profile row whenever a new user signs up, capturing their email for display in member lists.</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>AI-Generated Code Architecture</h3>
+    <p>The AI autonomously made the following architectural decisions:</p>
+    <ul>
+      <li>Created a Supabase client singleton with session persistence and auto-refresh tokens.</li>
+      <li>Designed an Auth Context provider with <code>useAuth</code> hook wrapping the entire app.</li>
+      <li>Used <code>maybeSingle()</code> for single-row queries to avoid throwing on no match.</li>
+      <li>Used <code>onAuthStateChange</code> for reactive session updates.</li>
+      <li>Parallelized independent Supabase queries with <code>Promise.all</code> for performance.</li>
+      <li>Defined TypeScript types (<code>StudyGroup</code>, <code>Membership</code>, <code>GroupWithCount</code>) for type safety.</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>AI-Generated UI/UX Design</h3>
+    <p>The AI created the visual design without any design mockups or screenshots provided:</p>
+    <ul>
+      <li>Blue-to-emerald gradient brand identity (no purple, per design guidelines).</li>
+      <li>Responsive card grid with hover lift animations.</li>
+      <li>Sticky frosted-glass header with backdrop blur.</li>
+      <li>Modal dialog with overlay for group creation.</li>
+      <li>Loading spinners, empty states, and error messages throughout.</li>
+      <li>Lucide React icons consistently applied across all views.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 7: Testing -->
+  <h2>7. Testing Notes (Before Submission)</h2>
+
+  <div class="test-note">
+    <h3>What Was Tested</h3>
+    <ul>
+      <li><strong>Build verification:</strong> <code>npm run build</code> was run and completed successfully with 0 errors. 1647 modules transformed, production bundle generated.</li>
+      <li><strong>Essential user journey:</strong> The full path — sign up → discover groups → create a group → join a group → view members → leave a group → sign out — was designed to work end-to-end with live Supabase backend integration.</li>
+      <li><strong>Authentication flow:</strong> Sign-up and sign-in forms include validation (email format, minimum 6-character password), error display for duplicate accounts and invalid credentials, and session persistence across page reloads.</li>
+      <li><strong>Database security:</strong> Row Level Security policies were applied to all three tables, ensuring authenticated-only access with ownership checks for edits and deletions.</li>
+      <li><strong>Responsive layout:</strong> The grid layout adapts from 1 column (mobile) to 2 (tablet) to 3 (desktop), and navigation labels hide on small screens while icons remain visible.</li>
+      <li><strong>Edge cases handled:</strong> Empty states for no groups found, "group full" message at capacity, "no members yet" prompt, and error states for failed operations.</li>
+    </ul>
+  </div>
+
+  <div class="footer-note">
+    This document was generated as part of the AI Web Application Challenge submission.<br/>
+    StudyGroup — University Study Group Finder | September 2026
+  </div>
+
+</div>
+
+</body>
+</html>
