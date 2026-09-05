@@ -28,13 +28,13 @@ export default function CreateGroupModal({ onClose, onCreated }: Props) {
     const { data, error: insertError } = await supabase
       .from('study_groups')
       .insert({
-        title,
-        course_code: courseCode,
-        course_name: courseName,
-        description,
-        location,
-        meeting_time: meetingTime,
-        max_members: maxMembers,
+        title: title.trim(),
+        course_code: courseCode.trim(),
+        course_name: courseName.trim(),
+        description: description.trim(),
+        location: location.trim(),
+        meeting_time: meetingTime.trim(),
+        max_members: Math.max(2, Math.min(100, maxMembers)),
         creator_id: user?.id,
       })
       .select('id')

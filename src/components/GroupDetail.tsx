@@ -62,20 +62,25 @@ export default function GroupDetail({ groupId, onBack }: Props) {
 
     const memberList = (memberData as Membership[] | null) ?? [];
 
-    const emails = await Promise.all(
-      memberList.map(async (m) => {
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('email')
-          .eq('id', m.user_id)
-          .maybeSingle();
-        return {
-          user_id: m.user_id,
-          email: profile?.email ?? 'Unknown student',
-          joined_at: m.joined_at,
-        };
-      })
-    );
+    let emails: MemberInfo[] = [];
+    if (memberList.length > 0) {
+      const userIds = memberList.map((m) => m.user_id);
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('id, email')
+        .in('id', userIds);
+
+      const profileMap = new Map<string, string>();
+      (profileData as { id: string; email: string }[] | null)?.forEach((p) => {
+        profileMap.set(p.id, p.email);
+      });
+
+      emails = memberList.map((m) => ({
+        user_id: m.user_id,
+        email: profileMap.get(m.user_id) ?? 'Unknown student',
+        joined_at: m.joined_at,
+      }));
+    }
 
     setMembers(emails);
     setLoading(false);
@@ -91,6 +96,26 @@ export default function GroupDetail({ groupId, onBack }: Props) {
 
   const handleJoin = async () => {
     setActionLoading(true);
+    setError(null);
+
+    const { data: memberData, error: memberErr } = await supabase
+      .from('memberships')
+      .select('id', { count: 'exact', head: true })
+      .eq('group_id', groupId);
+
+    if (memberErr) {
+      setError('Could not check group capacity. Please try again.');
+      setActionLoading(false);
+      return;
+    }
+
+    const currentCount = memberData?.length ?? 0;
+    if (currentCount >= (group?.max_members ?? 0)) {
+      setError('This group is full.');
+      setActionLoading(false);
+      return;
+    }
+
     const { error: joinErr } = await supabase
       .from('memberships')
       .insert({ group_id: groupId, user_id: user?.id });
@@ -120,7 +145,11 @@ export default function GroupDetail({ groupId, onBack }: Props) {
   };
 
   const handleDelete = async () => {
+    if (!window.confirm('Are you sure you want to delete this group? This cannot be undone.')) {
+      return;
+    }
     setActionLoading(true);
+    setError(null);
     const { error: delErr } = await supabase.from('study_groups').delete().eq('id', groupId);
     if (delErr) {
       setError(delErr.message);

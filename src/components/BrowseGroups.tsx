@@ -111,5 +111,3 @@ export default function BrowseGroups({ onOpenGroup, onCreateGroup }: Props) {
     </div>
   );
 }
-
-export { MapPin, Clock, Users };

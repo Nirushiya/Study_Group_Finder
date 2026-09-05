@@ -59,7 +59,11 @@ export default function MyGroups({ onOpenGroup }: Props) {
   }, [fetchData]);
 
   const handleLeave = async (groupId: string) => {
-    await supabase.from('memberships').delete().eq('group_id', groupId).eq('user_id', user?.id);
+    const { error: leaveErr } = await supabase.from('memberships').delete().eq('group_id', groupId).eq('user_id', user?.id);
+    if (leaveErr) {
+      alert('Could not leave the group. Please try again.');
+      return;
+    }
     fetchData();
   };
 
